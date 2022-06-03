@@ -1,24 +1,39 @@
-import { type LinksFunction } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import { json, type LinksFunction, type LoaderFunction } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import blob from "~/assets/blob.png";
-import discordIcon from "~/assets/icons/discord.svg";
 import illustration from "~/assets/illustration.svg";
 import isotype from "~/assets/isotype.svg";
 import logo from "~/assets/logo~dark.svg";
+import { Icon } from "~/components/icon";
 import styles from "~/styles/home.css";
+
+type LoaderData = {
+  metrics: {
+    discord: number;
+    twitter: number;
+    twitch: number;
+  };
+};
 
 export let links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
+export let loader: LoaderFunction = async () => {
+  return json<LoaderData>({
+    metrics: { discord: 257, twitter: 379, twitch: 36 },
+  });
+};
+
 export default function Index() {
   let { t } = useTranslation();
+  let { metrics } = useLoaderData<LoaderData>();
 
   return (
     <section
       id="home"
-      className="bg-no-repeat bg-right-top min-h-screen px-20"
+      className="bg-no-repeat bg-right-top min-h-screen px-20 flex flex-col"
       style={{
         // @ts-expect-error CSS Variable
         "--blob-url-4x": `url(${blob})`,
@@ -43,29 +58,61 @@ export default function Index() {
         </nav>
       </header>
 
-      <section className="flex items-center justify-between">
-        <div className="space-y-5">
-          <h1 className="text-orange-40">
-            <img
-              src={isotype}
-              alt={t("hero.title")}
-              width={533.51}
-              height={48}
-            />
-          </h1>
-          <p className="text-xl text-orange-10">{t("hero.subtitle")}</p>
+      <section className="flex items-center justify-between py-14 px-2.5 max-w-screen-xl mx-auto flex-grow">
+        <div className="space-y-9">
+          <div className="space-y-5">
+            <h1 className="text-orange-40">
+              <img
+                src={isotype}
+                alt={t("hero.title")}
+                width={533.51}
+                height={48}
+              />
+            </h1>
+            <p className="text-xl text-orange-10">{t("hero.subtitle")}</p>
+          </div>
 
           <Link
             to="discord"
-            className="py-3 px-9 bg-orange-80 text-orange-10 inline-flex items-center rounded-xl text-2xl leading-none"
+            className="py-3 px-9 gap-x-2 bg-orange-80 text-orange-10 inline-flex items-center rounded-xl text-2xl leading-none"
           >
-            <img src={discordIcon} alt="" aria-hidden width={20} height={20} />
+            <Icon name="discord" width={20} height={20} />
             <span>{t("hero.cta")}</span>
           </Link>
         </div>
 
         <img src={illustration} alt="" width={589.14} height={296} />
       </section>
+
+      <section className="bg-orange-40 text-gray-100 flex items-center justify-center gap-x-32 py-6 -mx-20">
+        <Metric
+          icon="discord"
+          amount={metrics.discord}
+          copy={t("metrics.discord")}
+        />
+        <Metric
+          icon="discord"
+          amount={metrics.twitter}
+          copy={t("metrics.twitter")}
+        />
+        <Metric
+          icon="discord"
+          amount={metrics.twitch}
+          copy={t("metrics.twitch")}
+        />
+      </section>
     </section>
+  );
+}
+
+function Metric(props: { icon: string; amount: number; copy: string }) {
+  return (
+    <div className="flex items-center gap-x-3">
+      <Icon name={props.icon} width={52} height={52} />
+      <div>
+        <h2 className="text-5xl font-extrabold">{props.amount}</h2>
+        <p className="text-2xl">{props.copy}</p>
+      </div>
+    </div>
   );
 }

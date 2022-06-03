@@ -10,4 +10,9 @@ export default {
       "Un espacio para compartir ideas y conocimientos sobre desarrollo",
     cta: "Unirse",
   },
+  metrics: {
+    discord: "miembros",
+    twitter: "seguidores",
+    twitch: "seguidores",
+  },
 };
