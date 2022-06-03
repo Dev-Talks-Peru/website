@@ -2,8 +2,12 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "cross-env NODE_ENV=development netlify dev",
+    "build:css": "tailwindcss --output ./app/styles/tailwind.css --minify",
+    "build:app": "remix build",
+    "build": "npm run build:css && npm run build:app",
+    "dev:css": "tailwindcss --output ./app/styles/tailwind.css --watch",
+    "dev:app": "cross-env NODE_ENV=development netlify dev",
+    "dev": "concurrently \"npm:dev:css\" \"npm:dev:app\"",
     "start": "cross-env NODE_ENV=production netlify dev"
   },
   "dependencies": {
@@ -12,15 +16,23 @@
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "cross-env": "^7.0.3",
+    "i18next": "^21.8.8",
+    "i18next-browser-languagedetector": "^6.1.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.17.0",
+    "remix-i18next": "^4.1.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.5.1",
     "@remix-run/eslint-config": "^1.5.1",
+    "@tailwindcss/forms": "^0.5.2",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "concurrently": "^7.2.1",
     "eslint": "^8.15.0",
+    "netlify-cli": "^10.4.0",
+    "tailwindcss": "^3.0.24",
     "typescript": "^4.6.4"
   },
   "engines": {

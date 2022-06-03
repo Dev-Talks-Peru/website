@@ -1,32 +1,6 @@
-# Welcome to Remix!
+# DevTalks.pe
 
-- [Remix Docs](https://remix.run/docs)
-
-## Netlify Setup
-
-1. Install the [Netlify CLI](https://www.netlify.com/products/dev/):
-
-```sh
-npm i -g netlify-cli
-```
-
-If you have previously installed the Netlify CLI, you should update it to the latest version:
-
-```sh
-npm i -g netlify-cli@latest
-```
-
-2. Sign up and log in to Netlify:
-
-```sh
-netlify login
-```
-
-3. Create a new site:
-
-```sh
-netlify init
-```
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5fe8c453-6293-476d-b595-199fd94106c4/deploy-status)](https://app.netlify.com/sites/devtalkspe/deploys)
 
 ## Development
 
