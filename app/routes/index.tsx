@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import logo from "~/assets/logo~dark.svg";
 
 export default function Index() {
   return (
@@ -40,7 +41,7 @@ function Header() {
   let { t } = useTranslation();
   return (
     <header>
-      <h1>{t("communityName")}</h1>
+      <img src={logo} width={56} height={56} alt={t("communityName")} />
     </header>
   );
 }
