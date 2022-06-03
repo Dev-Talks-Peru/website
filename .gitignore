@@ -5,3 +5,4 @@ node_modules
 /.netlify
 .env
 /app/styles/tailwind.css
+.DS_Store
