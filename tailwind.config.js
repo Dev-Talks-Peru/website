@@ -8,7 +8,7 @@ module.exports = {
         60: "#F9976D",
         40: "#FF9E7A",
         20: "#FFB48F",
-        10: "#FFCEA5",
+        10: "#FFF3EE",
       },
       blue: {
         100: "#335C72",
