@@ -6,8 +6,7 @@ export default {
   },
   hero: {
     title: "Dev Talks",
-    subtitle:
-      "Un espacio para compartir ideas y conocimientos sobre desarrollo",
+    subtitle: "Únete y aprende en comunidad sobre desarrollo",
     cta: "Unirse",
   },
   metrics: {

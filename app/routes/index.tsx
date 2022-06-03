@@ -36,7 +36,7 @@ export default function Index() {
   return (
     <section
       id="home"
-      className="bg-no-repeat bg-right-top min-h-screen px-4 flex flex-col"
+      className="bg-no-repeat 2xl:bg-contain bg-right-top min-h-screen px-4 flex flex-col"
       style={{
         // @ts-expect-error CSS Variable
         "--blob-url-1x": `url(${blob})`,
@@ -45,10 +45,10 @@ export default function Index() {
         "--blob-url-4x": `url(${blob4x})`,
       }}
     >
-      <header className="flex items-center justify-between flex-col sm:flex-row h-14 my-2.5 w-full max-w-screen-xl mx-auto">
+      <header className="flex items-center justify-between h-14 my-2.5 w-full max-w-screen-xl mx-auto">
         <img src={logo} width={56} height={56} alt={t("communityName")} />
 
-        <nav>
+        <nav className="hidden sm:block">
           <ul className="flex items-center gap-x-4 sm:gap-x-8">
             <li>
               <a href="/coc" className="text-gray-100 font-semibold leading-7">
