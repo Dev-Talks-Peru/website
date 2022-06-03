@@ -4,4 +4,10 @@ export default {
     coc: "Código de Conducta",
     prev: "Meetups anteriores",
   },
+  hero: {
+    title: "Dev Talks",
+    subtitle:
+      "Un espacio para compartir ideas y conocimientos sobre desarrollo",
+    cta: "Unirse",
+  },
 };
