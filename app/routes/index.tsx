@@ -61,7 +61,9 @@ export default function Index() {
       }}
     >
       <header className="flex items-center justify-between h-14 my-2.5 w-full max-w-screen-xl mx-auto">
-        <img src={logo} width={56} height={56} alt={t("communityName")} />
+        <a href="/">
+          <img src={logo} width={56} height={56} alt={t("communityName")} />
+        </a>
 
         <nav className="hidden sm:block">
           <ul className="flex items-center gap-x-4 sm:gap-x-8">
