@@ -13,7 +13,7 @@ export default function Index() {
   return (
     <section
       id="home"
-      className="bg-contain bg-no-repeat bg-top bg-right"
+      className="bg-no-repeat bg-right-top min-h-screen"
       style={{
         // @ts-expect-error CSS Variable
         "--blob-url-4x": `url(${blob})`,
