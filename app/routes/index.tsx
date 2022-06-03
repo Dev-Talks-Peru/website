@@ -8,7 +8,7 @@ import blob4x from "~/assets/blob@4x.png";
 import illustration from "~/assets/illustration.svg";
 import isotype from "~/assets/isotype.svg";
 import logo from "~/assets/logo~dark.svg";
-import { Icon } from "~/components/icon";
+import { Icon, icons } from "~/components/icon";
 import styles from "~/styles/home.css";
 
 type LoaderData = {
@@ -20,7 +20,22 @@ type LoaderData = {
 };
 
 export let links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    {
+      rel: "preload",
+      as: "image",
+      href: blob4x,
+      imagesrcset: `${blob} 1x, ${blob2x} 2x, ${blob3x} 3x, ${blob4x} 4x`,
+      fetchpriority: "high",
+      media: "(min-width: 1280px)",
+    },
+    { rel: "preload", href: styles, as: "style" },
+    { rel: "preload", href: illustration, as: "image" },
+    { rel: "preload", href: isotype, as: "image" },
+    { rel: "preload", href: logo, as: "image" },
+    { rel: "preload", href: icons, as: "image" },
+    { rel: "stylesheet", href: styles },
+  ];
 };
 
 export let loader: LoaderFunction = async () => {
@@ -83,7 +98,7 @@ export default function Index() {
 
           <Link
             to="discord"
-            className="py-3 px-9 gap-x-2 bg-orange-80 text-orange-10 inline-flex items-center rounded-xl text-2xl leading-none"
+            className="py-3 px-9 gap-x-2 bg-orange-100 text-white inline-flex items-center rounded-xl text-2xl leading-none"
           >
             <Icon name="discord" width={20} height={20} />
             <span>{t("hero.cta")}</span>

@@ -21,3 +21,5 @@ export function Icon({ name, className, width, height }: IconProps) {
     </svg>
   );
 }
+
+export { icons };

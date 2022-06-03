@@ -2,6 +2,7 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx}"],
   theme: {
     colors: {
+      white: "#ffffff",
       orange: {
         100: "#F46530",
         80: "#F67E51",

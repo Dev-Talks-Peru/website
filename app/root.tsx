@@ -17,16 +17,25 @@ import { useChangeLanguage } from "remix-i18next";
 import tailwind from "~/styles/tailwind.css";
 import { i18n } from "./services/i18n.server";
 
-type LoaderData = { locale: string; title: string };
+type LoaderData = {
+  locale: string;
+  meta: { title: string; description: string };
+};
 
 export let links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwind }];
+  return [
+    { rel: "preload", href: tailwind, as: "style" },
+    { rel: "stylesheet", href: tailwind },
+  ];
 };
 
 export let loader: LoaderFunction = async ({ request }) => {
   let locale = await i18n.getLocale(request);
   let t = await i18n.getFixedT(locale);
-  return json<LoaderData>({ locale, title: t("communityName") });
+  return json<LoaderData>({
+    locale,
+    meta: { title: t("root.title"), description: t("root.description") },
+  });
 };
 
 export let meta: MetaFunction = ({ data }) => {
