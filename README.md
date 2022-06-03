@@ -4,6 +4,8 @@
 
 ## Development
 
+Create the `.env` file in the root of the project with the `DISCORD_INVITE_LINK` variable set to whatever.
+
 The Netlify CLI starts your app in development mode, rebuilding assets on file changes.
 
 ```sh
