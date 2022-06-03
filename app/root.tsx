@@ -8,7 +8,6 @@ import {
   Links,
   Meta,
   Outlet,
-  Scripts,
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
@@ -66,7 +65,6 @@ export default function App() {
       <body>
         <Outlet />
         <ScrollRestoration />
-        <Scripts />
       </body>
     </html>
   );
