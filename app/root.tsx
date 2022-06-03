@@ -41,7 +41,8 @@ export let loader: LoaderFunction = async ({ request }) => {
 export let meta: MetaFunction = ({ data }) => {
   return {
     charset: "utf-8",
-    title: data.title,
+    title: data.meta.title,
+    description: data.meta.description,
     viewport: "width=device-width,initial-scale=1",
   };
 };
