@@ -56,7 +56,10 @@ export default function Index() {
               </a>
             </li>
             <li>
-              <a href="/coc" className="text-gray-100 font-semibold leading-7">
+              <a
+                href="/meetups"
+                className="text-gray-100 font-semibold leading-7"
+              >
                 {t("nav.prev")}
               </a>
             </li>
