@@ -1,39 +1,29 @@
+import { type LinksFunction } from "@remix-run/node";
 import { useTranslation } from "react-i18next";
+import blob from "~/assets/blob.png";
+import illustration from "~/assets/illustration.svg";
 import logo from "~/assets/logo~dark.svg";
+import styles from "~/styles/home.css";
+
+export let links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: styles }];
+};
 
 export default function Index() {
   return (
-    <>
+    <section
+      id="home"
+      className="bg-contain bg-no-repeat bg-top bg-right"
+      style={{
+        // @ts-expect-error CSS Variable
+        "--blob-url-4x": `url(${blob})`,
+      }}
+    >
       <Header />
-      <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-        <h1>Welcome to Remix</h1>
-        <ul>
-          <li>
-            <a
-              target="_blank"
-              href="https://remix.run/tutorials/blog"
-              rel="noreferrer"
-            >
-              15m Quickstart Blog Tutorial
-            </a>
-          </li>
-          <li>
-            <a
-              target="_blank"
-              href="https://remix.run/tutorials/jokes"
-              rel="noreferrer"
-            >
-              Deep Dive Jokes App Tutorial
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-              Remix Docs
-            </a>
-          </li>
-        </ul>
-      </div>
-    </>
+      <section>
+        <img src={illustration} alt="" width={589.14} height={296} />
+      </section>
+    </section>
   );
 }
 
@@ -42,6 +32,17 @@ function Header() {
   return (
     <header>
       <img src={logo} width={56} height={56} alt={t("communityName")} />
+
+      <nav>
+        <ul>
+          <li>
+            <a href="/coc">{t("nav.coc")}</a>
+          </li>
+          <li>
+            <a href="/coc">{t("nav.prev")}</a>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
