@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import icons from "~/assets/icons.svg";
 
 type IconProps = {
@@ -11,7 +12,7 @@ export function Icon({ name, className, width, height }: IconProps) {
   return (
     <svg
       aria-hidden
-      className={className}
+      className={clsx(className, "fill-current flex-shrink-0")}
       role="img"
       width={width}
       height={height}

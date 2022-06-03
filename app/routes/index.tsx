@@ -2,6 +2,9 @@ import { json, type LinksFunction, type LoaderFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import blob from "~/assets/blob.png";
+import blob2x from "~/assets/blob@2x.png";
+import blob3x from "~/assets/blob@3x.png";
+import blob4x from "~/assets/blob@4x.png";
 import illustration from "~/assets/illustration.svg";
 import isotype from "~/assets/isotype.svg";
 import logo from "~/assets/logo~dark.svg";
@@ -33,17 +36,20 @@ export default function Index() {
   return (
     <section
       id="home"
-      className="bg-no-repeat bg-right-top min-h-screen px-20 flex flex-col"
+      className="bg-no-repeat bg-right-top min-h-screen px-4 flex flex-col"
       style={{
         // @ts-expect-error CSS Variable
-        "--blob-url-4x": `url(${blob})`,
+        "--blob-url-1x": `url(${blob})`,
+        "--blob-url-2x": `url(${blob2x})`,
+        "--blob-url-3x": `url(${blob3x})`,
+        "--blob-url-4x": `url(${blob4x})`,
       }}
     >
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between flex-col sm:flex-row h-14 my-2.5 w-full max-w-screen-xl mx-auto">
         <img src={logo} width={56} height={56} alt={t("communityName")} />
 
         <nav>
-          <ul className="flex items-center gap-x-8">
+          <ul className="flex items-center gap-x-4 sm:gap-x-8">
             <li>
               <a href="/coc" className="text-gray-100 font-semibold leading-7">
                 {t("nav.coc")}
@@ -58,7 +64,7 @@ export default function Index() {
         </nav>
       </header>
 
-      <section className="flex items-center justify-between py-14 px-2.5 max-w-screen-xl mx-auto flex-grow">
+      <section className="flex items-center justify-between py-14 px-2.5 max-w-screen-xl w-full mx-auto flex-grow gap-x-2.5">
         <div className="space-y-9">
           <div className="space-y-5">
             <h1 className="text-orange-40">
@@ -81,25 +87,39 @@ export default function Index() {
           </Link>
         </div>
 
-        <img src={illustration} alt="" width={589.14} height={296} />
+        <img
+          src={illustration}
+          alt=""
+          width={589.14}
+          height={296}
+          className="hidden lg:block"
+        />
       </section>
 
-      <section className="bg-orange-40 text-gray-100 flex items-center justify-center gap-x-32 py-6 -mx-20">
-        <Metric
-          icon="discord"
-          amount={metrics.discord}
-          copy={t("metrics.discord")}
-        />
-        <Metric
-          icon="discord"
-          amount={metrics.twitter}
-          copy={t("metrics.twitter")}
-        />
-        <Metric
-          icon="discord"
-          amount={metrics.twitch}
-          copy={t("metrics.twitch")}
-        />
+      <section className="bg-orange-40 text-gray-100 py-6 -mx-4">
+        <div className="flex items-center md:justify-center snap-mandatory snap-x md:snap-none overflow-x-auto md:px-32 px-[33%] gap-x-16 md:gap-x-32">
+          <div className="snap-center shrink-0">
+            <Metric
+              icon="discord"
+              amount={metrics.discord}
+              copy={t("metrics.discord")}
+            />
+          </div>
+          <div className="snap-center shrink-0">
+            <Metric
+              icon="twitter"
+              amount={metrics.twitter}
+              copy={t("metrics.twitter")}
+            />
+          </div>
+          <div className="snap-center shrink-0">
+            <Metric
+              icon="twitch"
+              amount={metrics.twitch}
+              copy={t("metrics.twitch")}
+            />
+          </div>
+        </div>
       </section>
     </section>
   );
@@ -107,7 +127,7 @@ export default function Index() {
 
 function Metric(props: { icon: string; amount: number; copy: string }) {
   return (
-    <div className="flex items-center gap-x-3">
+    <div className="flex items-center gap-x-3 md:w-auto justify-center w-1/3 mx-auto">
       <Icon name={props.icon} width={52} height={52} />
       <div>
         <h2 className="text-5xl font-extrabold">{props.amount}</h2>

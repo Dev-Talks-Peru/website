@@ -1,6 +1,6 @@
 #home {
   background-image: var(--blob-url-4x);
-  /* background-image: image-set(
+  background-image: image-set(
     var(--blob-url-1x) 1x,
     var(--blob-url-2x) 2x,
     var(--blob-url-3x) 3x,
@@ -11,5 +11,5 @@
     var(--blob-url-2x) 2x,
     var(--blob-url-3x) 3x,
     var(--blob-url-4x) 4x
-  ); */
+  );
 }
