@@ -61,24 +61,24 @@ export default function Index() {
       }}
     >
       <header className="flex items-center justify-between h-14 my-2.5 w-full max-w-screen-xl mx-auto">
-        <a href="/">
+        <Link to="/">
           <img src={logo} width={56} height={56} alt={t("communityName")} />
-        </a>
+        </Link>
 
         <nav className="hidden sm:block">
           <ul className="flex items-center gap-x-4 sm:gap-x-8">
             <li>
-              <a href="/coc" className="text-gray-100 font-semibold leading-7">
+              <Link to="/coc" className="text-gray-100 font-semibold leading-7">
                 {t("nav.coc")}
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/meetups"
+              <Link
+                to="/meetups"
                 className="text-gray-100 font-semibold leading-7"
               >
                 {t("nav.prev")}
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
