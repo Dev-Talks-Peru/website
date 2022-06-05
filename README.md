@@ -9,6 +9,7 @@ Create the `.env` file in the root of the project with the following variables s
 - `DISCORD_INVITE_LINK`
 - `TWITCH_ACCESS_TOKEN`
 - `TWITCH_CLIENT_ID`
+- `TWITTER_ACCESS_TOKEN`
 
 The Netlify CLI starts your app in development mode, rebuilding assets on file changes.
 

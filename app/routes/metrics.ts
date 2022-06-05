@@ -1,13 +1,25 @@
 import { json, type LoaderFunction } from "@remix-run/node";
-import { TWITCH_CLIENT_ID, TWITCH_ACCESS_TOKEN } from "~/env.server";
+import {
+  TWITCH_CLIENT_ID,
+  TWITCH_ACCESS_TOKEN,
+  TWITTER_ACCESS_TOKEN,
+} from "~/env.server";
 
 // Twitch API
-const headers = new Headers();
-headers.append("Authorization", `Bearer ${TWITCH_ACCESS_TOKEN}`);
-headers.append("Client-Id", TWITCH_CLIENT_ID);
+const twitchHeaders = new Headers();
+twitchHeaders.append("Authorization", `Bearer ${TWITCH_ACCESS_TOKEN}`);
+twitchHeaders.append("Client-Id", TWITCH_CLIENT_ID);
 const twitchDataPromise = fetch(
   "https://api.twitch.tv/helix/users/follows?to_id=780300495&first=1",
-  { headers }
+  { headers: twitchHeaders }
+).then((res) => res.json());
+
+// Twitter API
+const twitterHeaders = new Headers();
+twitterHeaders.append("Authorization", `Bearer ${TWITTER_ACCESS_TOKEN}`);
+const twitterDataPromise = fetch(
+  "https://api.twitter.com/2/users/1095066019469713408?user.fields=public_metrics",
+  { headers: twitterHeaders }
 ).then((res) => res.json());
 
 export type MetricsLoaderData = {
@@ -19,8 +31,15 @@ export type MetricsLoaderData = {
 };
 
 export let loader: LoaderFunction = async () => {
-  const [twitchData] = await Promise.all([twitchDataPromise]);
+  const [twitterData, twitchData] = await Promise.all([
+    twitterDataPromise,
+    twitchDataPromise,
+  ]);
   return json<MetricsLoaderData>({
-    metrics: { discord: 257, twitter: 379, twitch: twitchData?.total || 36 },
+    metrics: {
+      discord: 257,
+      twitter: twitterData?.data?.public_metrics?.followers_count || 379,
+      twitch: twitchData?.total || 36,
+    },
   });
 };
