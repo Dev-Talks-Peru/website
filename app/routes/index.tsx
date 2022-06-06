@@ -1,4 +1,4 @@
-import { type LinksFunction } from "@remix-run/node";
+import { json, type LinksFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import blob from "~/assets/blob.png";
@@ -9,8 +9,10 @@ import illustration from "~/assets/illustration.svg";
 import isotype from "~/assets/isotype.svg";
 import logo from "~/assets/logo~dark.svg";
 import { Icon, icons } from "~/components/icon";
+import { getMetrics, type Metrics } from "~/services/metrics.server";
 import styles from "~/styles/home.css";
-import { loader as metricsLoader, type MetricsLoaderData } from "./metrics";
+
+type LoaderData = { metrics: Metrics };
 
 export let links: LinksFunction = () => {
   return [
@@ -31,11 +33,24 @@ export let links: LinksFunction = () => {
   ];
 };
 
-export let loader = metricsLoader;
+export let loader = async () => {
+  try {
+    let metrics = await getMetrics();
+    return json<LoaderData>({ metrics });
+  } catch {
+    return json<LoaderData>({
+      metrics: {
+        discord: 260,
+        twitter: 383,
+        twitch: 36,
+      },
+    });
+  }
+};
 
 export default function Index() {
   let { t } = useTranslation();
-  let { metrics } = useLoaderData<MetricsLoaderData>();
+  let { metrics } = useLoaderData<LoaderData>();
 
   return (
     <section
