@@ -108,25 +108,31 @@ export default function Index() {
       <section className="bg-orange-40 text-gray-100 py-6 -mx-4">
         <div className="flex items-center md:justify-center snap-mandatory snap-x md:snap-none overflow-x-auto md:px-32 px-[33%] gap-x-16 md:gap-x-32">
           <div className="snap-center shrink-0">
-            <Metric
-              icon="discord"
-              amount={metrics.discord}
-              copy={t("metrics.discord")}
-            />
+            <Link to="discord">
+              <Metric
+                icon="discord"
+                amount={metrics.discord}
+                copy={t("metrics.discord")}
+              />
+            </Link>
           </div>
           <div className="snap-center shrink-0">
-            <Metric
-              icon="twitter"
-              amount={metrics.twitter}
-              copy={t("metrics.twitter")}
-            />
+            <a href="https://twitter.com/devtalkspe">
+              <Metric
+                icon="twitter"
+                amount={metrics.twitter}
+                copy={t("metrics.twitter")}
+              />
+            </a>
           </div>
           <div className="snap-center shrink-0">
-            <Metric
-              icon="twitch"
-              amount={metrics.twitch}
-              copy={t("metrics.twitch")}
-            />
+            <a href="https://www.twitch.tv/devtalkspe">
+              <Metric
+                icon="twitch"
+                amount={metrics.twitch}
+                copy={t("metrics.twitch")}
+              />
+            </a>
           </div>
         </div>
       </section>
