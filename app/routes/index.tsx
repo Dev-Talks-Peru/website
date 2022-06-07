@@ -88,7 +88,7 @@ export default function Index() {
         </nav>
       </header>
 
-      <section className="flex items-center justify-between py-14 px-2.5 max-w-screen-xl w-full mx-auto flex-grow gap-x-2.5">
+      <section className="flex items-center lg:justify-between py-14 px-2.5 max-w-screen-xl w-full mx-auto flex-grow gap-x-2.5 md:justify-center">
         <div className="space-y-9">
           <div className="space-y-5">
             <h1 className="text-orange-40">
@@ -121,34 +121,28 @@ export default function Index() {
       </section>
 
       <section className="bg-orange-40 text-gray-100 py-6 -mx-4">
-        <div className="flex items-center md:justify-center snap-mandatory snap-x md:snap-none overflow-x-auto md:px-32 px-[33%] gap-x-16 md:gap-x-32">
-          <div className="snap-center shrink-0">
-            <Link to="discord">
-              <Metric
-                icon="discord"
-                amount={metrics.discord}
-                copy={t("metrics.discord")}
-              />
-            </Link>
-          </div>
-          <div className="snap-center shrink-0">
-            <a href="https://twitter.com/devtalkspe">
-              <Metric
-                icon="twitter"
-                amount={metrics.twitter}
-                copy={t("metrics.twitter")}
-              />
-            </a>
-          </div>
-          <div className="snap-center shrink-0">
-            <a href="https://www.twitch.tv/devtalkspe">
-              <Metric
-                icon="twitch"
-                amount={metrics.twitch}
-                copy={t("metrics.twitch")}
-              />
-            </a>
-          </div>
+        <div className="flex items-center md:justify-center md:px-32 px-[33%] gap-x-16 md:gap-x-24 md:flex-row flex-col gap-y-4">
+          <Link to="discord">
+            <Metric
+              icon="discord"
+              amount={metrics.discord}
+              copy={t("metrics.discord")}
+            />
+          </Link>
+          <a href="https://twitter.com/devtalkspe">
+            <Metric
+              icon="twitter"
+              amount={metrics.twitter}
+              copy={t("metrics.twitter")}
+            />
+          </a>
+          <a href="https://www.twitch.tv/devtalkspe">
+            <Metric
+              icon="twitch"
+              amount={metrics.twitch}
+              copy={t("metrics.twitch")}
+            />
+          </a>
         </div>
       </section>
     </section>
