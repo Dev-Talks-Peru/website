@@ -18,4 +18,7 @@ export default {
     twitter: "seguidores",
     twitch: "seguidores",
   },
+  live: {
+    iframeTitle: "Transmición en vivo por Twitch",
+  },
 };
