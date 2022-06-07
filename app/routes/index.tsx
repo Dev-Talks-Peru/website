@@ -1,4 +1,8 @@
-import { json, type LinksFunction } from "@remix-run/node";
+import {
+  json,
+  type HeadersFunction,
+  type LinksFunction,
+} from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import blob from "~/assets/blob.png";
@@ -36,7 +40,15 @@ export let links: LinksFunction = () => {
 export let loader = async () => {
   try {
     let metrics = await getMetrics();
-    return json<LoaderData>({ metrics });
+    return json<LoaderData>(
+      { metrics },
+      {
+        headers: {
+          "Cache-Control":
+            "public, max-age=60, s-maxage=600, stale-while-revalidate",
+        },
+      }
+    );
   } catch {
     return json<LoaderData>({
       metrics: {
@@ -46,6 +58,10 @@ export let loader = async () => {
       },
     });
   }
+};
+
+export let headers: HeadersFunction = ({ loaderHeaders }) => {
+  return loaderHeaders;
 };
 
 export default function Index() {
