@@ -45,7 +45,7 @@ export let loader = async () => {
       {
         headers: {
           "Cache-Control":
-            "public, max-age=60, s-maxage=600, stale-while-revalidate",
+            "public, max-age=60, s-maxage=600, stale-while-revalidate=86400, stale-if-error=86400",
         },
       }
     );
