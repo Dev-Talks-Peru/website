@@ -122,27 +122,27 @@ export default function Index() {
 
       <section className="bg-orange-40 text-gray-100 py-6 -mx-4">
         <div className="flex items-center md:justify-center md:px-32 px-[33%] gap-x-16 md:gap-x-24 md:flex-row flex-col gap-y-4">
-          <Link to="discord">
+          <Link to="/discord">
             <Metric
               icon="discord"
               amount={metrics.discord}
               copy={t("metrics.discord")}
             />
           </Link>
-          <a href="https://twitter.com/devtalkspe">
+          <Link to="/twitter">
             <Metric
               icon="twitter"
               amount={metrics.twitter}
               copy={t("metrics.twitter")}
             />
-          </a>
-          <a href="https://www.twitch.tv/devtalkspe">
+          </Link>
+          <Link to="/twitch">
             <Metric
               icon="twitch"
               amount={metrics.twitch}
               copy={t("metrics.twitch")}
             />
-          </a>
+          </Link>
         </div>
       </section>
     </section>
